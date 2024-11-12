@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: #fcfcfe;
+}
+/*nav*/
+nav {
+    position: fixed;
+    width: 100vw;
+    background: rgba(252, 252, 254, .8);
+}
+.nav-wrap {
+    max-width: 1440px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    padding: 1.2rem;
+    justify-content: space-between;
+}
+.logo svg {
+    color: #000000;
+    cursor: pointer;
+    transition: ease .25s;
+}
+.logo svg:hover {
+    color: #444444;
+    transition: ease .25s;
+}
+nav ul {
+    display: flex;
+}
+nav li {
+    margin-right: 1rem;
+}
+li a {
+    text-decoration: none;
+    color: #323232;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/*intro*/
+.box-1 {
+    text-align: left;
+    max-width: 1080px;
+    vertical-align: middle;
+    margin: auto;
+    padding: 6rem 1.2rem 2rem;
+}
+.box-2 {
+    text-align: left;
+    max-width: 1080px;
+    vertical-align: middle;
+    margin: auto;
+    padding: 0 1.2rem 2rem;
+}
+.box-1 .head,
+.box-2 .head {
+    margin: 1rem 0;
+    font-family: 'inter', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #323232;
+}
+.box-1 .body,
+.box-2 .body {
+    border-bottom: 1px solid #323232;
+    margin: 1rem 0;
+    padding: 1rem 0 4rem;
+    font-family: 'inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: #323232;
+}
+
+/*test-card*/
+.sub .body {
+    max-width: 1080px;
+    margin: auto;
+    padding: 1.2rem;
+    text-align: center;
+}
+.team-card {
+    margin:  2rem auto;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 1rem;
+}
+.card-1, 
+.card-2 {
+    display: grid;
+    width: fit-content;
+    margin: auto;  
+}
+.card-1 .box, 
+.card-2 .box {
+    text-decoration: none;
+    color: #323232;
+    min-width: 256px;
+    margin: auto;
+    padding: 1rem 2rem;
+    text-align: center;
+    transition: ease .25s;
+}
+.card-1 .name, 
+.card-2 .name {
+    margin-bottom: .25rem;
+    font-family: 'inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+.card-1 .pos, 
+.card-2 .pos {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+footer {
+    padding: 1rem;
+    bottom: 0;
+    text-align: center;
+}
+.footer-wrap {
+    max-width: 1080px;
+    margin: auto;
+    text-align: left;
+}
+footer svg {
+    color: #000000;
+    margin: auto;
+    margin-bottom: 6rem;
+}
+footer p {
+    border-top: 1px solid #aaaaaa;
+    color: #323232;
+    max-width: 1080px;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+@media all and (max-width: 480px) {
+    .team-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media all and (max-width: 360px) {
+    .team-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,395 @@
+/* roboto */ @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* inter */  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* arimo */ @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-display: swap;
+    line-height: 24px;
+    letter-spacing: .6px;
+}
+body {
+    background: #ffffff;
+    justify-content: center;
+    transition: ease .25s;
+}
+
+/* nav */
+.navbar {
+    width: 100vw;
+    position: fixed;
+    background: #ffffff;
+    border-bottom: .5px solid rgba(0, 0, 0, .1);
+    /* background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(24px); */
+    /* animation: nav-load var(--nav-load-time) ease; */
+    z-index: 1000;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: ease .25s;
+}
+.nav-wrap {
+    max-width: 1200px;
+    display: flex;
+    margin: auto;
+    padding: .6rem 1.2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo a {
+    font: 700 24px montserrat, sans-serif;
+    width: fit-content;
+    color: #323232;
+    transition: ease .25s;
+}
+.logo a img {
+    width: 24px;
+}
+.menu {
+    display: flex;
+}
+.menu li a {
+    font: 350 14px inter, sans-serif;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: #777777;
+    transition: ease .25s;
+}
+.menu li a:hover {
+    color: #0179ff;
+    transition: ease .25s;
+}
+.login-btn {
+    font: 450 16px inter, sans-serif;
+    padding: .6rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: #323232;
+    background: none;
+    cursor: pointer;
+    transition: ease .25s;
+}
+.login-btn:hover {
+    color: #0179ff;
+    border: 1px solid #0179ff;
+    transition: ease .25s;
+}
+
+/* login overlay */
+.overlay-box {
+    position: fixed;
+    top: 65px; 
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    z-index: 999; 
+}
+.overlay {
+    display: none; 
+    justify-content: right;
+    align-items: center; 
+    max-width: 1200px; 
+    width: 100%;
+    padding: 1.2rem; 
+    box-sizing: border-box;
+}
+.overlay.active {
+    display: flex;
+}
+.login-box {
+    background: #ffffff;
+    width: 300px;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.login-box h2 {
+    font: 550 20px/1.5 inter, sans-serif;    
+    margin-bottom: 20px;
+}
+.login-box p {
+    font: 450 12px/1.5 inter, sans-serif;
+    margin: 10px 0;
+    color: #666;
+}
+.login-box label {
+    display: block;
+    text-align: left;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+.login-box input[type="email"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background: #0179ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.btn-google {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, .1);
+    color: #323232;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* welcome */
+.about {
+    text-align: center;
+    max-width: 1080px;
+    vertical-align: middle;
+    margin: auto;
+    padding: 16rem 1.2rem 2rem;
+}
+.about-wrap .head {
+    margin: 1rem 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+
+    font: 600 40px/1.2 montserrat, sans-serif;
+    color: #323232;
+}
+.about-wrap .head a {
+    color: #0179ff;
+}
+.about-wrap .body {
+    margin: 1rem 0;
+    font-family: 'inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #323232;
+}
+.button {
+    display: inline-block;
+    font-family: 'inter', sans-serif;
+    text-decoration: none;
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    color: #ffffff;
+    background-color: #ff9e01;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: ease .25s;
+}
+.button:hover {
+    background-color: #ffa500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* test-card */
+.container {
+    max-width: 1080px;
+    margin: auto;
+    padding: 1.2rem;
+    text-align: center;
+}
+.test-card {
+    margin: 4.8rem auto;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 1.2rem;
+}
+.card-g, 
+.card-p,
+.card-a {
+    display: grid;
+    width: fit-content;
+    margin: auto;
+}
+.card-a {
+    margin-left: .8rem;
+}
+.card-g a, 
+.card-p a,
+.card-a a {
+    /*border-radius: 8px;*/
+    text-decoration: none;
+    /*background-color: #f8f8fa;*/
+    color: #323232;
+    margin: auto;
+    /*padding: 1rem 2rem;*/
+    text-align: center;
+    transition: ease .25s;
+}
+/*.card-g a:hover, 
+.card-p a:hover,
+.card-a a:hover {
+    background: #5086e0;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}*/
+.card-g .head, 
+.card-p .head,
+.card-a .head {
+    margin-bottom: .25rem;
+    font-family: 'inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    transition: ease .25s;
+}
+.card-g .head:hover, 
+.card-p .head:hover,
+.card-a .head:hover {
+    color: #5086e0;
+    transition: ease .25s;
+}
+/*.card-g .body, 
+.card-p .body,
+.card-a .body {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}*/
+
+/*up-comming*/
+.up-comming {
+    background-color: #f8f8fa;
+    padding: 1.2rem;
+}
+.up-comming .title {
+    color: #0179ff;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: .5rem 0;
+}
+.up-comming .head {
+    color: #ff9e01;
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin: .5rem 0;
+}
+.up-comming .body {
+    color: #323232;
+    text-align: center;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    margin: 2rem 0 .5rem;
+}
+
+/*about-us*/
+.about-us {
+    text-align: center;
+    max-width: 720px;
+    vertical-align: middle;
+    margin: 8rem auto;
+    padding: 1.2rem;
+}
+.about-us .head {
+    color: #323232;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+.about-us .body {
+    color: #888888;
+    text-align: center;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 1rem auto;
+}
+
+/*asap*/
+.slogan {
+    max-width: 1080px;
+    margin: 8rem auto;
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.slogan img {
+    text-align: left;
+    width: 75%;
+    height: auto;
+    margin: 1rem auto;
+}
+.slogan-wrap {
+    vertical-align: middle;
+    margin: auto;
+    height: fit-content;
+}
+.slogan .head {
+    color: #323232;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 1rem auto;
+}
+.slogan .body {
+    color: #888888;
+    text-align: left;
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 1rem auto;
+}
+
+/* foot */
+.design {
+    text-align: center;
+    margin: auto;
+    padding: 5.2rem 0 .5rem;
+    position: static;
+    animation: design-load var(--design-load-time) ease;
+}
+.design p {
+    font: 350 14px/1.5 roboto, sans-serif;
+    color: #777777;
+    transition: ease .25s;
+}
+
+@media all and (max-width: 480px) {
+    .about {
+        text-align: left;
+        padding: 12rem 1rem 4rem 1rem;
+    }
+    .slogan {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .slogan .head {
+        text-align: center;
+    }
+    .slogan .body {
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 360px) {
+    .test-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
