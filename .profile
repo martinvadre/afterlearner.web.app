@@ -1,0 +1,1 @@
+export PATH=/Users/martin/Project/LearnX/.npm-global/bin:$PATH 

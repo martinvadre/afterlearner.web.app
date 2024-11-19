@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterlearner</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.jpg" sizes="16x16 32x32">
+    <link rel="stylesheet" href="src/signin-up.css">
+</head>
+<body>
+    <container class="content">
+        <content>
+            <div class="form" onclick="event.stopPropagation();">
+                <h2>Sign Up</h2>
+                <button class="btn-google" id="googleSignInButton" onclick="googleSignIn()">Continue with Google</button>
+                <p class="or">or</p>
+                <form id="signUpForm">
+                    <input type="text" id="name" name="name" placeholder="Name">
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </form>
+                <button type="submit" class="btn-submit">Sign Up</button>
+                <p class="agree">By clicking Sign up, I agree to Afterlearner’s <a href="#" style="color: #0179ff;">Terms</a> and <a href="#" style="color: #0179ff;">Privacy Policy</a></p>
+                <p class="link">Already have an account? <a href="/signin" style="color: #0179ff;">Sign In</a></p>
+            </div>
+        </content>
+    </container>
+    <script defer type="module" src="route/app.js"></script>
+    <script defer type="module" src="route/signup.js"></script>
+</body>
+</html>

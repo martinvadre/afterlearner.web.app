@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterlearner</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.jpg" sizes="16x16 32x32">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header role="banner">
+        <nav class="navbar navbar-index">
+            <div class="nav-wrap">
+                <div class="logo">
+                    <a href="/">
+                        Afterlearner
+                        <!-- <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="32px" fill="currentColor" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid meet"> 
+                            <g transform="translate(0, 900) scale(0.1,-0.1)" stroke="none"> 
+                                <path d="M6795 7199 c-55 -13 -141 -35 -195 -50 ... " />
+                            </g> 
+                        </svg> -->
+                    </a>
+                </div>
+                <ul class="menu">
+                    <!-- Uncomment the following lines to add navigation items -->
+                    <!-- 
+                    <li><a href="/about" class="item nav-about" title="Learn more about Martin Wongdaeng">About</a></li>
+                    <li><a href="#work" class="item nav-work" title="View my work projects">Work</a></li>
+                    <li><a href="#resource" class="item nav-resources" title="Access my resources">Resources</a></li>
+                    <li><a href="#contact" class="item nav-contact" title="Get in touch with me">Contact</a></li>
+                    -->
+                    <li>
+                        <button class="login-btn" id="loginButton">Log in</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Box -->
+    <div class="overlay-box">
+        <div class="overlay" id="loginOverlay">
+            <div class="login-box" onclick="event.stopPropagation();">
+                <h2>Log in</h2>
+                <form id="signInForm">
+                    <input placeholder="Email" type="email" id="email" name="email" required>
+                    <input placeholder="Password" type="password" id="password" name="password" required>
+                    <button type="submit" class="btn-submit">Log In</button>
+                </form>
+                <p>or</p>
+                <button class="btn-google" id="googleSignInButton" onclick="googleSignIn()">Continue with Google</button>
+                <p>New user? <a href="/signup" style="color: #0179ff;">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+        
+    <!-- content -->
+    <container class="content">
+        <content>
+            <div class="about" id="about">
+                <div class="about-wrap">
+                    <h1 class="head">Mock exam for <a>TCAS</a> preperation</h1>
+                    <h2 class="body">Boost your TCAS score with past papers and mock exams.</h2>
+                    <a href="/signup" class="button">Get Started</a>
+                </div>
+                <div class="test-card test-card-index">
+                    <div class="card card-index">
+                        <a><h1 class="head">TGAT</h1></a>
+                    </div>
+                    <div class="card card-index">
+                        <a><h1 class="head">TPAT</h1></a>
+                    </div>
+                    <div class="card card-index alevel">
+                        <a><h1 class="head">A-Level</h1></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="container">
+                <div class="test-card">
+                    <div class="card-g">
+                        <a href="/tgat">
+                            <h1 class="head">TGAT</h1>
+                        </a>
+                    </div>
+                    <div class="card-p">
+                        <a href="/tpat">
+                            <h1 class="head">TPAT</h1>
+                        </a>
+                    </div>
+                    <div class="card-a">
+                        <a href="/alevel">
+                            <h1 class="head">A-Level</h1>
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+            <div class="up-comming">
+                <h1 class="title">Up Comming</h1>
+                <h2 class="head">"All you can learn"</h2>
+                <h3 class="body">stay tune!</h3>
+            </div>
+            <div class="about-us">
+                <h1 class="head">Why Us?</h1>
+                <h2 class="body">Our website is the platform that collecting a real past-year and many more mock exam all in one place for your TCAS exam preparation.</h2>
+            </div>
+            <div class="slogan">
+                <img src="https://martinxts.files.wordpress.com/2024/01/img_6889.png?w=1024" alt="">
+                <div class="slogan-wrap">
+                    <h1 class="head">Any where, Any device</h1>
+                    <h2 class="body">We make it easy to access exam even from your pocket, and you can use it even on a mount!</h2>
+                </div>
+            </div>
+            <div class="design">
+                <p>© 2024 Afterlearner.</p>
+            </div>
+        </content>
+    </container>
+    <script type="module" src="route/feature/app.js" defer></script>
+    <script type="module" src="route/feature/index.js" defer></script>
+</body>
+</html>

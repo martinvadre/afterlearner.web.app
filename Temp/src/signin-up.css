@@ -1,0 +1,99 @@
+/* roboto */ @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* inter */  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* arimo */ @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-display: swap;
+    line-height: 24px;
+    letter-spacing: .6px;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    margin: 0;
+}
+.content {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    padding: 1.2rem;
+}
+h2 {
+    font: 550 20px/1.5 inter, sans-serif;    
+    margin-bottom: 20px;
+    text-align: center;
+}
+.or,
+.link,
+.agree {
+    font: 450 12px/1.5 inter, sans-serif;
+    color: #777777;
+    margin: 20px 0;
+    text-align: center;
+}
+.agree {
+    font-size: 10px;
+    margin-top: 10px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 8px;
+    font-size: 14px;
+}
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background: #0179ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: ease .25s;
+}
+.btn-submit:hover {
+    background: #5086e0;
+    transition: ease .25s;
+}
+.btn-google {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, .1);
+    color: #323232;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: ease .25s;
+}
+.btn-google:hover {
+    border: 1px solid rgba(0, 0, 0, .25);
+    transition: ease .25s;
+}
+.signin-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+.signin-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+.signin-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterlearner</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.jpg" sizes="16x16 32x32">
+    <link rel="stylesheet" href="style/signin-up.css">
+</head>
+<body>
+    <container class="content">
+        <content>
+            <div class="form" onclick="event.stopPropagation();">
+                <h2>Log in</h2>
+                <button class="btn-google" id="googleSignInButton" onclick="googleSignIn()">Continue with Google</button>
+                <p class="or">or</p>
+                <form id="signInForm">
+                    <input placeholder="Email" type="email" id="email" name="email" required>
+                    <input placeholder="Password" type="password" id="password" name="password" required>
+                    <button type="submit" class="btn-submit">Log In</button>
+                </form>
+                <p class="link">New user? <a href="/signup" style="color: #0179ff;">Sign up</a></p>
+            </div>
+        </content>
+    </container>
+    <script type="module" src="route/feature/app.js" defer></script>
+    <script type="module" src="route/feature/signin.js" defer></script>
+</body>
+</html>

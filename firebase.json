@@ -1,12 +1,21 @@
 {
-  "hosting": {
-    "public": "public",
-    "cleanUrls": true,
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
+    "hosting": {
+        "public": "public",
+        "cleanUrls": true,
+        "rewrites": [
+            {
+                "source": "/",
+                "destination": "/index.html"
+            },
+            {
+                "source": "/**",
+                "destination": "/404.html"
+            }
+        ],
+        "ignore": [
+            "**/.*", 
+            "firebase.json", 
+            "**/node_modules/**"
+        ]
+    }
 }
