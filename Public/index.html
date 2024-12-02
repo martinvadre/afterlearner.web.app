@@ -6,12 +6,37 @@
     <title>Afterlearner</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.jpg" sizes="16x16 32x32">
     <link rel="stylesheet" href="style/index.css">
-</head>
+    <style>
+        nav {
+            width: 100vw;
+            position: fixed;
+            background: #ffffff;
+            border-bottom: .5px solid rgba(0, 0, 0, 0);
+            animation: nav-load var(--nav-load-time) ease;
+            z-index: 1000;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: .6rem 0;
+            transition: ease .25s;
+        }
+        nav.scrolled {
+            background: #ffffff;
+            border-bottom: .5px solid rgba(0, 0, 0, .1);
+            padding: 0;
+            transition: ease .25s;
+        }
+        @supports (-webkit-touch-callout: none) {
+            .design {
+                padding-bottom: .6 rem; 
+            }
+        }
+    </style>
+</head> 
 <body>
     <!-- Navbar -->
     <header role="banner">
         <nav class="navbar navbar-index">
-            <div class="nav-wrap">
+            <div class="nav-wrap" id="nav">
                 <div class="logo">
                     <a href="/">
                         Afterlearner
@@ -39,9 +64,9 @@
     </header>
 
     <!-- Login Box -->
-    <div class="overlay-box">
-        <div class="overlay" id="loginOverlay">
-            <div class="login-box" onclick="event.stopPropagation();">
+    <div class="overlay-box" id="overlay">
+        <div class="login-box-wrap" id="inner-overlay">
+            <div class="login-box" id="login-box" onclick="event.stopPropagation();">
                 <h2>Log in</h2>
                 <form id="signInForm">
                     <input placeholder="Email" type="email" id="email" name="email" required>
@@ -96,10 +121,9 @@
                     </div>
                 </div>
             </div> -->
-            <div class="up-comming">
-                <h1 class="title">Up Comming</h1>
-                <h2 class="head">"All you can learn"</h2>
-                <h3 class="body">stay tune!</h3>
+            <div class="sponsor" style="text-align: center;">
+                <h1 class="head">Unofficially supported by</h1>
+                <img src="img/cpe.svg" class="cpe" alt="CPE Logo" style="max-width: 120px;">
             </div>
             <div class="about-us">
                 <h1 class="head">Why Us?</h1>
@@ -108,16 +132,17 @@
             <div class="slogan">
                 <img src="https://martinxts.files.wordpress.com/2024/01/img_6889.png?w=1024" alt="">
                 <div class="slogan-wrap">
-                    <h1 class="head">Any where, Any device</h1>
+                    <h1 class="head">Anywhere, Any device</h1>
                     <h2 class="body">We make it easy to access exam even from your pocket, and you can use it even on a mount!</h2>
                 </div>
             </div>
             <div class="design">
-                <p>© 2024 Afterlearner.</p>
+                <p>© 2024 Afterlearner | <a href="https://martinvadre.web.app" style="color: #777777;">martinvadre</a></p>
             </div>
         </content>
     </container>
     <script type="module" src="route/feature/app.js" defer></script>
     <script type="module" src="route/feature/index.js" defer></script>
+    <script>console.log("I hope it's no error underneath 💀")</script>
 </body>
 </html>

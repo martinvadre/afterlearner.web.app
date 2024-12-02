@@ -1,9 +1,3 @@
-// Import Firebase modules
-// const firebase = require("firebase/app")
-// const { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } = require("firebase/auth")
-// const { getFirestore } = reqire("firebase/firestore");
-// const { getStorage } = require("firebase/storage");
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
@@ -13,13 +7,32 @@ window.addEventListener('load', () => {
     document.querySelector('nav').classList.add('loaded');
 });
 
-// Function to toggle overlay
-function toggleOverlay() {
-    const overlay = document.getElementById('loginOverlay');
-    overlay.classList.toggle('active');
-}
+document .addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
 
-document.getElementById('loginButton').addEventListener('click', toggleOverlay);
+    if(window.scrollY > 0) {
+        nav.classList.add('scrolled');
+    }
+    else {
+        nav.classList.remove('scrolled')
+    }
+})
+
+// Function to toggle overlay
+document.getElementById('loginButton').addEventListener('click', function (event) {
+    event.stopPropagation(); 
+    const overlay = document.getElementById('overlay');
+    overlay.classList.toggle('active');
+});
+
+document.addEventListener("click", function (event) {
+    const overlay = document.getElementById('overlay');
+    const loginBox = document.getElementById('login-box');
+    if (!loginBox.contains(event.target) && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+    }
+});
+
 
 // Firebase configuration
 const firebaseConfig = {
@@ -34,37 +47,61 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// setPersistence(auth, inMemoryPersistence)
+// .then(() => {
+//     const provider = new GoogleAuthProvider();
+//     return signInWithPopup(auth, provider);
+// })
+// .catch((err) => {
+//     return console.error(err);
+// })
+
+// Set persistence
 setPersistence(auth, inMemoryPersistence)
-.then(() => {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
-})
-.catch((err) => {
-    return console.error(err);
-})
+    .catch((err) => {
+        console.error("Persistence error:", err);
+    });
 
 // Email/password sign-in
-document.getElementById("signInForm").addEventListener("submit", (event) => {
+document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     
     signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            // alert(`Welcome back, ${user.displayName || user.email}!`);
-            window.location.replace("/home");
-            toggleOverlay();
-        })
-        .catch((error) => {
-            console.error("Error during email login:", error.message);
-            alert("Login failed: " + error.message);
-        });
+    try {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        window.location.replace("/home");
+        // toggleOverlay();
+    } catch (error) {
+        console.error("Error during email login:", error.message);
+        alert("Login failed: " + error.message);
+    }
 });
+// document.getElementById("signInForm").addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     const email = document.getElementById("email").value;
+//     const password = document.getElementById("password").value;
+    
+//     signInWithEmailAndPassword(auth, email, password)
+//         .then((userCredential) => {
+//             const user = userCredential.user;
+//             // alert(`Welcome back, ${user.displayName || user.email}!`);
+//             window.location.replace("/home");
+//             toggleOverlay();
+//         })
+//         .catch((error) => {
+//             console.error("Error during email login:", error.message);
+//             alert("Login failed: " + error.message);
+//         });
+// });
 
 // Google sign-in
 document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
@@ -76,11 +113,27 @@ function googleSignIn() {
         .then((result) => {
             user = result.user;
             // alert(`Hello, ${user.displayName}! You're signed in.`);
-            toggleOverlay();
-            window.location.replace("/home");
+            // toggleOverlay();
+            window.location.replace("/home", "_blank");
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
+
 };
+// document.getElementById("googleSignInButton")?.addEventListener("click", googleSignIn);
+// async function googleSignIn() {
+
+//     signInWithRedirect(auth, provider)
+//         try {
+//             await signInWithPopup(auth, new GoogleAuthProvider()).then(result => console.log(result));
+//             user = result.user;
+//             toggleOverlay();
+//             window.location.replace("/home", "_blank");
+//         } 
+//         catch (error) {
+//             console.error("Error during Google sign-in:", error.message);
+//             alert("Google sign-in failed: " + error.message);
+//         }
+// };

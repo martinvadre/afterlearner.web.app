@@ -228,26 +228,34 @@ function showScore(){
     resetState();
     questionElement.innerHTML = `you scored ${score} out of ${questions.length}!`;
     const scorePercentage = (score / questions.length) * 100;
-    const gifPlayer = document.getElementById("gifPlayer");
+    playGif();
     if(scorePercentage >= 80) {
-        playGif();
         nextButton.innerHTML = 'Home'
         nextButton.addEventListener('click', function () {
-            window.location.href = 'https://afterlearner.web.app/tgat1';
+            window.location.href = '/tgat1';
         });
     }
     else {
         nextButton.innerHTML = 'Try Again'
         nextButton.addEventListener('click', function () {
-            window.location.href = 'https://afterlearner.web.app/tgat1-exam';
+            window.location.href = '/tgat1-exam';
         });
     }
     nextButton.style.display = 'block'
 }
 
 function playGif() {
-    const gifPlayer = document.getElementById("gifPlayer");
-    gifPlayer.src = 'https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g';
+    const gifPlayer = document.getElementById("gifPlayer");    
+    const scorePercentage = (score / questions.length) * 100;
+    if(scorePercentage >= 80) {
+        gifPlayer.src = 'https://media0.giphy.com/media/NYVkNkrc7x99hLQNwF/giphy.gif?cid=6c09b952r0jbi4s0r1fqa77nbuo36xhp0g4gtgoa0kwsnxu8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g';
+    }
+    else if(scorePercentage >= 20 && scorePercentage < 80) {
+        gifPlayer.src = 'https://media2.giphy.com/media/J27KfEl2ayxCQNbyT9/200w.gif?cid=82a1493buxwda61zikzncbnpkxey1aebtg5zyzcbjbhozoy2&ep=v1_gifs_related&rid=200w.gif&ct=g';
+    }
+    else if(scorePercentage < 20) {
+        gifPlayer.src = 'https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g';
+    }
     gifPlayer.style.display = 'block';
 }
 

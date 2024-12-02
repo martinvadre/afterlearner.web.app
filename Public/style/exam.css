@@ -20,7 +20,6 @@ body {
 /*exam-box*/
 section {
     padding: 1.2rem;
-    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +29,7 @@ section {
     max-width: 480px;
     margin: 4rem auto auto;
     padding: 1.2rem;
+    position: relative;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
@@ -100,6 +100,7 @@ th {
 }
 
 .gif {
+    max-width: 300px;
     border-radius: 6px;
     display: none;
     margin: auto;
@@ -134,6 +135,22 @@ th {
 }
 
 /* footer */
+.design {
+    text-align: center;
+    margin: auto;
+    bottom: 0;
+    padding: 5.2rem 0 2.5rem;
+    position: static;
+    animation: design-load var(--design-load-time) ease;
+}
+.five {
+    animation: about-load var(--about-load-time) ease;
+}
+.design p {
+    font: 350 14px/1.5 roboto, sans-serif;
+    color: #777777;
+    transition: ease .25s;
+}
 footer {
     border-top: .5px solid #cecece;
     background: rgba(255, 255, 255, .85);
@@ -178,6 +195,19 @@ footer {
     color: transparent;
 }
 
+/* ------------------------------------------------ */
+
+@supports (-webkit-touch-callout: none) {
+    .design {
+        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); 
+    }
+    .fixed-footer {
+        padding-bottom: calc(.125rem + env(safe-area-inset-bottom)); 
+    }
+}
+
+/* ------------------------------------------------ */
+
 @media all and (max-width: 480px) {
     .match-box {
         width: 18rem;
@@ -196,6 +226,8 @@ footer {
         font: 12px;
     }
 }
+/* ------------------------------------------------ */
+
 
 @media all and (max-width: 360px) {
     .match-box {

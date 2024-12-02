@@ -12,7 +12,10 @@
     line-height: 24px;
     letter-spacing: .6px;
 }
-
+html {
+    scroll-behavior: smooth;
+    --box-load-time: 2.4s;
+}
 body {
     background-color: #ffffff;
     display: flex;
@@ -25,7 +28,8 @@ body {
     background-color: #ffffff;
     width: 100%;
     max-width: 480px;
-    padding: 1.2rem;
+    padding: 1.2rem;    
+    animation: box-load var(--box-load-time) ease;
 }
 h2 {
     font: 550 20px/1.5 inter, sans-serif;    
@@ -96,4 +100,20 @@ input[type="password"] {
 }
 .signin-link a:hover {
     text-decoration: underline;
+}
+
+/* ------------------------------------------------ */
+
+@keyframes box-load {
+    0% {
+        opacity: 0;
+        transform: translateY(40%);
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

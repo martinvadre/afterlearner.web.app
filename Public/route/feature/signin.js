@@ -19,3 +19,45 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+
+// Set persistence
+setPersistence(auth, inMemoryPersistence)
+    .catch((err) => {
+        console.error("Persistence error:", err);
+    });
+
+// Email/password sign-in
+document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    signInWithEmailAndPassword(auth, email, password)
+    try {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        window.location.replace("/home");
+    } catch (error) {
+        console.error("Error during email login:", error.message);
+        alert("Login failed: " + error.message);
+    }
+});
+
+// Google sign-in
+document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
+function googleSignIn() {
+    const provider = new GoogleAuthProvider();
+    let user = null;
+
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            user = result.user;
+            window.location.replace("/home", "_blank");
+        })
+        .catch((error) => {
+            console.error("Error during Google sign-in:", error.message);
+            alert("Google sign-in failed: " + error.message);
+        });
+
+};
