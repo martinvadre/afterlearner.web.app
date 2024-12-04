@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,103 +17,58 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 
 // Email/password sign-up
-const admin = require('firebase-admin');
-
-// Initialize Firebase Admin
-admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-});
-
-const dbapi = admin.firestore();
-
-exports.handler = async (event) => {
-    const body = JSON.parse(event.body);
-    const { name, email, password } = body;
+document.getElementById('signUpForm').addEventListener('submit', async (event) => {
+    console.log(`sign up working`);
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value; // Capture the password
 
     try {
-        // Create user with Firebase Authentication
-        const userRecord = await admin.auth().createUser({
-            email: email,
-            password: password,
-            displayName: name,
-        });
+        // Create user in Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
 
         // Store user data in Firestore
-        await dbapi.collection('users').doc(userRecord.uid).set({
+        await setDoc(doc(db, "users", user.uid), {
             name: name,
             email: email,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: new Date()
         });
 
-        return {
-            statusCode: 201,
-            body: JSON.stringify({ message: 'User created successfully', uid: userRecord.uid }),
-        };
+        console.log('User created:', user);
+        // Redirect or update UI as needed
     } catch (error) {
-        console.error('Error creating user:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: error.message }),
-        };
-    }
-};
-
-// Email/password sign in
-createUserWithEmailAndPassword(auth, email, password)
-.then((userCredential) => {
-    const user = userCredential.user;
-    // ...
-})
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-});
-
-
-// Set persistence
-setPersistence(auth, inMemoryPersistence)
-    .catch((err) => {
-        console.error("Persistence error:", err);
-    });
-
-// Email/password sign-in
-document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    
-    signInWithEmailAndPassword(auth, email, password)
-    try {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        window.location.replace("/home");
-    } catch (error) {
-        console.error("Error during email login:", error.message);
-        alert("Login failed: " + error.message);
+        console.error('Error during sign-up:', error.message);
+        alert('Error creating user: ' + error.message);
     }
 });
+
+
 
 // Google sign-in
 document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
 function googleSignIn() {
     const provider = new GoogleAuthProvider();
-    let user = null;
 
     signInWithPopup(auth, provider)
         .then((result) => {
-            user = result.user;
-            // alert(`Hello, ${user.displayName}! You're signed in.`);
-            window.location.replace("/home", "_blank");
+            const user = result.user;
+            // Additional user info can be retrieved here
+            window.location.replace("/home");
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
+}
 
-};
+// Set persistence (optional, but helps with sessions)
+/*
+setPersistence(auth, inMemoryPersistence)
+    .catch((err) => {
+        console.error("Persistence error:", err);
+    });
+*/

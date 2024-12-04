@@ -48,16 +48,15 @@ document.getElementById("signInForm")?.addEventListener("submit", async (event) 
 document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
 function googleSignIn() {
     const provider = new GoogleAuthProvider();
-    let user = null;
 
     signInWithPopup(auth, provider)
         .then((result) => {
-            user = result.user;
-            window.location.replace("/home", "_blank");
+            const user = result.user;
+            // Additional user info can be retrieved here
+            window.location.replace("/home");
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
-
-};
+}
