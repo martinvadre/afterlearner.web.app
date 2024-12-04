@@ -41,8 +41,54 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
         console.log('User created:', user);
         // Redirect or update UI as needed
     } catch (error) {
+<<<<<<< HEAD
         console.error('Error during sign-up:', error.message);
         alert('Error creating user: ' + error.message);
+=======
+        console.error('Error creating user:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message }),
+        };
+    }
+};
+
+// Email/password sign in
+createUserWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+    const user = userCredential.user;
+    // ...
+})
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+});
+
+
+// Set persistence
+setPersistence(auth, inMemoryPersistence)
+    .catch((err) => {
+        console.error("Persistence error:", err);
+    });
+
+// Email/password sign-in
+document.getElementById("signUpForm")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    signInWithEmailAndPassword(auth, email, password)
+    try {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        window.location.replace("/home");
+    } catch (error) {
+        console.error("Error during email login:", error.message);
+        alert("Login failed: " + error.message);
+>>>>>>> d5e4458 (k)
     }
 });
 
