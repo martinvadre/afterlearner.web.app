@@ -16,7 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// const db = getFirestore(app);
 
 // Email/password sign-up
 document.getElementById('signUpForm').addEventListener('submit', async (event) => {
