@@ -39,6 +39,7 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
 
         console.log('User created:', user);
         // Redirect or update UI as needed
+            window.location.replace("/signin");
     } catch (error) {
         console.error('Error during sign-up:', error.message);
         alert('Error creating user: ' + error.message);
