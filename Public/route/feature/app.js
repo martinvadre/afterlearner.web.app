@@ -86,10 +86,11 @@ function managePageAccess() {
         const usernameElement = document.getElementById('username');
         if (usernameElement) {
             if (user) {
-                usernameElement.textContent = user.displayName || user.email || "User";
+                usernameElement.textContent = user.displayName || "User";
                 console.log("User signed in:", user.displayName || user.email);
+                console.log(user);
             } else {
-                usernameElement.textContent = "Pawarit";
+                // usernameElement.textContent = "Pawarit";
                 console.log("No user signed in");
             }
         }

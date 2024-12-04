@@ -36,8 +36,20 @@ document.getElementById("signInForm")?.addEventListener("submit", async (event) 
     try {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        window.location.replace("/home");
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+        console.log(userCredential)
+        console.log(auth.currentUser)
+
+        updateProfile(auth.currentUser, {
+            displayName: name
+        }).then(() => {
+            const user = auth.currentUser;
+            document.cookie = `${user}`
+            console.log(document.cookie);
+            console.log('User created: ');
+            window.location.replace("/home")
+        })
     } catch (error) {
         console.error("Error during email login:", error.message);
         alert("Login failed: " + error.message);

@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence, updateProfile } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase configuration
@@ -28,9 +28,19 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
     try {
         // Create user in Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        document.cookie = `${user}`
-        console.log(document.cookie);
+
+        console.log(userCredential)
+        console.log(auth.currentUser)
+
+        updateProfile(auth.currentUser, {
+            displayName: name
+        }).then(() => {
+            const user = auth.currentUser;
+            document.cookie = `${user}`
+            console.log(document.cookie);
+            console.log('User created: ');
+            window.location.replace("/home")
+        })
 
         // Store user data in Firestore
         // await setDoc(doc(db, "users", user.uid), {
@@ -38,9 +48,6 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
         //     email: email,
         //     createdAt: new Date()
         // });
-
-        console.log('User created:', user);
-        window.location.replace("/home");
     } catch (error) {
         console.error('Error during sign-up:', error.message);
         alert('Error creating user: ' + error.message);
