@@ -29,6 +29,8 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
         // Create user in Firebase Authentication
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        document.cookie = `${user}`
+        console.log(document.cookie);
 
         // Store user data in Firestore
         // await setDoc(doc(db, "users", user.uid), {
@@ -38,8 +40,7 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
         // });
 
         console.log('User created:', user);
-        // Redirect or update UI as needed
-            window.location.replace("/signin");
+        window.location.replace("/home");
     } catch (error) {
         console.error('Error during sign-up:', error.message);
         alert('Error creating user: ' + error.message);
