@@ -108,7 +108,7 @@ th {
 
 #next-btn,
 #home-btn {
-    background: #007bff;
+    background: #027CEE;
     color: #ffffff;
     margin: 1rem auto 0;
     padding: .5rem 2rem;
@@ -120,7 +120,7 @@ th {
 }
 #next-btn:hover,
 #home-btn:hover {
-    background: #5086e0;
+    background: #048CFF;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     transition: ease .25s;
 }
@@ -177,7 +177,7 @@ footer {
     transition: ease .25s;
 }
 .fixed-footer a:hover {
-    color: #0179ff;
+    color: #027CEE;
     transition: ease .25s;
 }
 .fixed-footer .current {

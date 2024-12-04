@@ -61,7 +61,7 @@ input[type="password"] {
 .btn-submit {
     width: 100%;
     padding: 10px;
-    background: #0179ff;
+    background: #027CEE;
     color: #ffffff;
     border: none;
     border-radius: 50px;
@@ -71,7 +71,7 @@ input[type="password"] {
     transition: ease .25s;
 }
 .btn-submit:hover {
-    background: #5086e0;
+    background: #048CFF;
     transition: ease .25s;
 }
 .btn-google {
@@ -95,7 +95,7 @@ input[type="password"] {
     margin-top: 16px;
 }
 .signin-link a {
-    color: #007bff;
+    color: #027CEE;
     text-decoration: none;
 }
 .signin-link a:hover {
