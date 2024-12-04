@@ -21,16 +21,46 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 // Email/password sign-up
-document.getElementById('signUpForm').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    // Add your sign-up logic here
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+const admin = require('firebase-admin');
+
+// Initialize Firebase Admin
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
 });
+
+const dbapi = admin.firestore();
+
+exports.handler = async (event) => {
+    const body = JSON.parse(event.body);
+    const { name, email, password } = body;
+
+    try {
+        // Create user with Firebase Authentication
+        const userRecord = await admin.auth().createUser({
+            email: email,
+            password: password,
+            displayName: name,
+        });
+
+        // Store user data in Firestore
+        await dbapi.collection('users').doc(userRecord.uid).set({
+            name: name,
+            email: email,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        return {
+            statusCode: 201,
+            body: JSON.stringify({ message: 'User created successfully', uid: userRecord.uid }),
+        };
+    } catch (error) {
+        console.error('Error creating user:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message }),
+        };
+    }
+};
 
 // Email/password sign in
 createUserWithEmailAndPassword(auth, email, password)
