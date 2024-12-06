@@ -41,13 +41,6 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
             console.log('User created: ');
             window.location.replace("/home")
         })
-
-        // Store user data in Firestore
-        // await setDoc(doc(db, "users", user.uid), {
-        //     name: name,
-        //     email: email,
-        //     createdAt: new Date()
-        // });
     } catch (error) {
         console.error('Error during sign-up:', error.message);
         alert('Error creating user: ' + error.message);
@@ -72,11 +65,3 @@ function googleSignIn() {
             alert("Google sign-in failed: " + error.message);
         });
 }
-
-// Set persistence (optional, but helps with sessions)
-/*
-setPersistence(auth, inMemoryPersistence)
-    .catch((err) => {
-        console.error("Persistence error:", err);
-    });
-*/

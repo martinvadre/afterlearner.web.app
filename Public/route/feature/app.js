@@ -20,77 +20,20 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// // Set persistence
-// setPersistence(auth, inMemoryPersistence)
-//     .catch((err) => {
-//         console.error("Persistence error:", err);
-//     });
-
-// // Handle redirect result
-// getRedirectResult(auth)
-//     .then((result) => {
-//         if (result) {
-//             window.location.replace("/home");
-//         }
-//     })
-//     .catch((error) => {
-//         console.error("Redirect result error:", error.message);
-//     });
-
-// // Email/password sign-in
-// document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
-//     event.preventDefault();
-//     const email = document.getElementById("email").value;
-//     const password = document.getElementById("password").value;
-    
-//     signInWithEmailAndPassword(auth, email, password)
-//     try {
-//         const email = document.getElementById("email").value;
-//         const password = document.getElementById("password").value;
-        
-//         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//         window.location.replace("/home");
-//     } catch (error) {
-//         console.error("Error during email login:", error.message);
-//         alert("Login failed: " + error.message);
-//     }
-// });
-
-// // Google sign-in
-// document.getElementById("googleSignInButton")?.addEventListener("click", googleSignIn);
-// async function googleSignIn() {
-//     try {
-//         const provider = new GoogleAuthProvider();
-//         await signInWithRedirect(auth, provider);
-//     } catch (error) {
-//         console.error("Error during Google sign-in:", error.message);
-//         alert("Google sign-in failed: " + error.message);
-//     }
-
-// };
-
 // Page access and user display management
 function managePageAccess() {
     onAuthStateChanged(auth, (user) => {
         const currentPage = window.location.pathname;
-        
-        // Handle page access
-        // if (!user && currentPage !== '/') {
-        //     window.location.replace('/');
-        // }
-        // else if (user && currentPage === '/') {
-        //     window.location.replace('/home');
-        // }
-        
+
+        console.log(user)        
         // Update username display
         const usernameElement = document.getElementById('username');
         if (usernameElement) {
             if (user) {
-                usernameElement.textContent = user.displayName || "User";
-                console.log("User signed in:", user.displayName || user.email);
+                usernameElement.textContent = user.displayName.split(" ")[0];
+                console.log("User signed in:", user.displayName.split(" ")[0] || user.email);
                 console.log(user);
             } else {
-                // usernameElement.textContent = "Pawarit";
                 console.log("No user signed in");
             }
         }
