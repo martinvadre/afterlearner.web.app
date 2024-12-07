@@ -25,15 +25,23 @@ function managePageAccess() {
     onAuthStateChanged(auth, (user) => {
         const currentPage = window.location.pathname;
 
-        console.log(user)        
         // Update username display
         const usernameElement = document.getElementById('username');
         if (usernameElement) {
             if (user) {
-                usernameElement.textContent = user.displayName.split(" ")[0];
-                console.log("User signed in:", user.displayName.split(" ")[0] || user.email);
-                console.log(user);
-            } else {
+                if (currentPage !== "/home") {
+                    window.location.replace("/home");
+                    console.log("Redirecting to home page");
+                }
+        
+                usernameElement.textContent = user.displayName?.split(" ")[0] || user.email;
+                console.log("User signed in:", user.displayName?.split(" ")[0] || user.email);
+            } 
+            else {
+                if (currentPage !== "/") {
+                    window.location.replace("/");
+                    console.log("Redirecting to Afterlearner");
+                }
                 console.log("No user signed in");
             }
         }

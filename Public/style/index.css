@@ -87,6 +87,21 @@ nav {
     border: 1px solid #027CEE;
     transition: ease .25s;
 }
+.status-btn {
+    font: 450 26px inter, sans-serif;
+    padding: .1rem 1.2rem .3rem;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: #777777;
+    background: none;
+    cursor: pointer;
+    transition: ease .25s;
+}
+.status-btn:hover {
+    color: #027CEE;
+    border: 1px solid #027CEE;
+    transition: ease .25s;
+}
 
 /* login overlay */
 .overlay-box {
@@ -114,7 +129,7 @@ nav {
 }
 .login-box {
     background: #ffffff;
-    max-width: 300px;
+    width: 300px;
     height: fit-content;
     padding: 1.2rem;
     border-radius: 10px;
