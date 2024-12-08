@@ -17,30 +17,43 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+
+function normalizePath(path) {
+    return path.endsWith("/") && path !== "/" ? path.slice(0, -1) : path;
+}
 
 // Page access and user display management
 function managePageAccess() {
     onAuthStateChanged(auth, (user) => {
         const currentPage = window.location.pathname;
 
+        // Restricted pages for unauthenticated users
+        const restrictedPages = [
+            "/home",
+
+            "/tgat", "/tgat1", "/tgat2", "/tgat3",
+            "/tgat1-exam", "/tgat2-exam", "/tgat3-exam",
+
+            "/tpat", "/tpat1", "/tpat2", "/tpat3", "/tpat4", "/tpat5",
+            "/tpat1-exam", "/tpat2-exam", "/tpat3-exam", "/tpat4-exam", "/tpat5-exam",
+
+            "/alevel", "/math1", "/math2", "/physics", "/chemistry", "/biology", "/social",
+            "/math1-exam", "/math2-exam", "/physics-exam", "/chemistry-exam", "/biology-exam", "/social-exam"
+        ];
+
         // Update username display
         const usernameElement = document.getElementById('username');
         if (usernameElement) {
-            if (user) {
+            if (user) { //logged in
                 if (currentPage === "/") {
                     window.location.replace("/home");
-                    console.log("Redirecting to home page");
                 }
-        
                 usernameElement.textContent = user.displayName?.split(" ")[0] || user.email;
                 console.log("User signed in:", user.displayName?.split(" ")[0] || user.email);
             } 
-            else {
-                if (currentPage !== "/") {
+            else { //not login
+                if (restrictedPages.includes(currentPage)) {
                     window.location.replace("/");
-                    console.log("Redirecting to Afterlearner");
                 }
                 console.log("No user signed in");
             }

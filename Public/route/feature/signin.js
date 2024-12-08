@@ -1,7 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -17,39 +15,44 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+
+// Auth state change listener
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in
+        console.log("User signed in:", user.displayName || user.email);
+        window.location.replace("/home");
+    } else {
+        // No user is signed in
+        console.log("No user signed in");
+    }
+});
 
 // Email/password sign-in
 document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    
-    signInWithEmailAndPassword(auth, email, password).then((user) => {
-        window.location.replace("/home");
 
-        console.log(user)
-    }).catch((error) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log("User signed in:", userCredential.user.email);
+    } catch (error) {
         console.error("Error during email login:", error.message);
         alert("Login failed: " + error.message);
-    })
+    }
 });
 
 // Google sign-in
-document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
-function googleSignIn() {
+document.getElementById("googleSignInButton").addEventListener("click", () => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
-            console.log("user get : " + user)
-            // Additional user info can be retrieved here
-            window.location.replace("/home");
+            console.log("Google user signed in:", user.email);
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
-}
+});

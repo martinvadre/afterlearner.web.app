@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, setPersistence, inMemoryPersistence, updateProfile } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,51 +16,50 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Email/password sign-up
-document.getElementById('signUpForm').addEventListener('submit', async (event) => {
-    console.log(`sign up working`);
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value; // Capture the password
-
-    try {
-        // Create user in Firebase Authentication
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-        console.log(userCredential)
-        console.log(auth.currentUser)
-
-        updateProfile(auth.currentUser, {
-            displayName: name
-        }).then(() => {
-            const user = auth.currentUser;
-            document.cookie = `${user}`
-            console.log(document.cookie);
-            console.log('User created: ');
-            window.location.replace("/home")
-        })
-    } catch (error) {
-        console.error('Error during sign-up:', error.message);
-        alert('Error creating user: ' + error.message);
+// Auth state change listener
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in
+        console.log("User signed in:", user.displayName || user.email);
+        window.location.replace("/home");
+    } else {
+        // No user is signed in
+        console.log("No user signed in");
     }
 });
 
+// Email/password sign-up
+document.getElementById('signUpForm')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log("User account created:", userCredential.user.email);
+
+        // Update display name
+        await updateProfile(auth.currentUser, { displayName: name });
+        console.log("User profile updated with name:", name);
+
+        window.location.replace("/home");
+    } catch (error) {
+        console.error("Error during sign-up:", error.message);
+        alert("Sign-up failed: " + error.message);
+    }
+});
 
 // Google sign-in
-document.getElementById("googleSignInButton").addEventListener("click", googleSignIn);
-function googleSignIn() {
+document.getElementById("googleSignInButton").addEventListener("click", () => {
     const provider = new GoogleAuthProvider();
-
     signInWithPopup(auth, provider)
         .then((result) => {
             const user = result.user;
-            // Additional user info can be retrieved here
-            window.location.replace("/home");
+            console.log("Google user signed in:", user.email);
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
-}
+});
