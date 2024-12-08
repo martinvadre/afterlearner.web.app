@@ -29,7 +29,7 @@ function managePageAccess() {
         const usernameElement = document.getElementById('username');
         if (usernameElement) {
             if (user) {
-                if (currentPage !== "/home") {
+                if (currentPage === "/") {
                     window.location.replace("/home");
                     console.log("Redirecting to home page");
                 }
