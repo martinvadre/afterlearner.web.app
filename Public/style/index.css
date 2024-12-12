@@ -33,13 +33,11 @@ nav {
     position: fixed;
     background: #ffffff;
     border-bottom: .5px solid rgba(0, 0, 0, .1);
-    /* background: rgba(255, 255, 255, .85);
-    backdrop-filter: blur(24px); */
-    animation: nav-load var(--nav-load-time) ease;
     z-index: 1000;
     left: 50%;
     transform: translateX(-50%);
     transition: ease .25s;
+    animation: nav-load var(--nav-load-time) ease;
 }
 .nav-wrap {
     max-width: 1200px;
@@ -54,9 +52,6 @@ nav {
     color: #323232;
     width: fit-content;
     transition: ease .25s;
-}
-.logo a img {
-    width: 24px;
 }
 .menu {
     display: flex;
@@ -77,7 +72,7 @@ nav {
     padding: .6rem 1.2rem;
     border-radius: 50px;
     border: 1px solid rgba(0, 0, 0, 0.25);
-    color: #323232;
+    color: #555555;
     background: none;
     cursor: pointer;
     transition: ease .25s;
@@ -144,7 +139,7 @@ nav {
 .login-box p {
     font: 450 12px/1.5 inter, sans-serif;
     margin: 10px 0;
-    color: #666;
+    color: #666666;
 }
 .login-box input[type="email"],
 .login-box input[type="password"] {
@@ -195,6 +190,9 @@ nav {
     margin: auto;
     padding: 18rem 1.2rem 2rem;
 }
+.about-wrap {
+    animation: about-load var(--about-load-time) ease;
+}
 .about-wrap .head {
     margin: 1rem 0;
     font-family: 'Montserrat', sans-serif;
@@ -229,6 +227,9 @@ nav {
 .button:hover {
     background-color: #ffa500;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+.test-card-index {
+    animation: work-load var(--work-load-time) ease;
 }
 
 /* intro */
@@ -490,65 +491,6 @@ footer {
 
 /* ------------------------------------------------ */
 
-@keyframes nav-load {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
-@keyframes login-load {
-    0% {
-        opacity: 0;
-        transform: translateY(-5%);
-    }
-    25% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes about-load {
-    0% {
-        opacity: 0;
-        transform: translateY(40%);
-    }
-    25% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-@keyframes work-load {
-    0% {
-        opacity: 0;
-        transform: translateY(40%);
-    }
-    25% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* ------------------------------------------------ */
-
-@supports (-webkit-touch-callout: none) {
-    .design {
-        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); 
-    }
-    .fixed-footer {
-        padding-bottom: calc(.125rem + env(safe-area-inset-bottom)); 
-    }
-}
-
-/* ------------------------------------------------ */
-
 @media all and (max-width: 580px) {
     .test-card {
         grid-template-columns: repeat(2, 1fr);
@@ -613,5 +555,65 @@ footer {
     }
     .btn-google {
         font-size: 14px;
+    }
+}
+
+/* ------------------------------------------------ */
+
+@supports (-webkit-touch-callout: none) {
+    .design {
+        padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); 
+    }
+    .fixed-footer {
+        padding-bottom: calc(.125rem + env(safe-area-inset-bottom)); 
+    }
+}
+
+/* ------------------------------------------------ */
+
+@keyframes nav-load {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+@keyframes login-load {
+    0% {
+        opacity: 0;
+        transform: translateY(-5%);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes about-load {
+    0% {
+        opacity: 0;
+        transform: translateY(40%);
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes work-load {
+    0% {
+        opacity: 0;
+        transform: translateY(40%);
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

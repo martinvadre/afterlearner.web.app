@@ -33,6 +33,17 @@
         </nav>
     </header>
 
+    <!-- Login Box -->
+    <div class="overlay-box" id="overlay">
+        <div class="login-box-wrap" id="inner-overlay">
+            <div class="login-box" id="login-box" onclick="event.stopPropagation();">
+                <h2>account</h2>
+                <button class="btn-google" id="logoutButton">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- content -->
     <content>
         <section class="intro-box">
             <div class="welcome-box">
@@ -70,5 +81,6 @@
         </div>
     </footer>
     <script type="module" src="route/feature/app.js" defer></script>
+    <script type="module" src="route/feature/logout.js" defer></script>
 </body>
 </html>
