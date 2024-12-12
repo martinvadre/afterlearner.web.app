@@ -71,7 +71,7 @@ nav {
     font: 450 16px inter, sans-serif;
     padding: .6rem 1.2rem;
     border-radius: 50px;
-    border: 1px solid rgba(0, 0, 0, 0.25);
+    border: 1px solid #cecece;
     color: #555555;
     background: none;
     cursor: pointer;
@@ -86,7 +86,7 @@ nav {
     font: 450 26px inter, sans-serif;
     padding: .1rem 1.2rem .3rem;
     border-radius: 50px;
-    border: 1px solid rgba(0, 0, 0, 0.25);
+    border: 1px solid #cecece;
     color: #777777;
     background: none;
     cursor: pointer;
@@ -139,14 +139,23 @@ nav {
 .login-box p {
     font: 450 12px/1.5 inter, sans-serif;
     margin: 10px 0;
-    color: #666666;
+    padding: 0 .5rem;
+    color: #777777;
+}
+.login-box p a {
+    color: #027CEE;
+    transition: ease .25s;
+}
+.login-box p a:hover {
+    color: #048CFF;
+    transition: ease .25s;
 }
 .login-box input[type="email"],
 .login-box input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid #cecece;
     border-radius: 8px;
     font-size: 14px;
 }
@@ -159,7 +168,6 @@ nav {
     border-radius: 50px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
     transition: ease .25s;
 }
 .btn-submit:hover {
@@ -170,14 +178,16 @@ nav {
     width: 100%;
     padding: 10px;
     background: none;
-    border: 1px solid rgba(0, 0, 0, .1);
-    color: #323232;
+    border: 1px solid #cecece;
+    color: #777777;
     border-radius: 50px;
     font-size: 16px;
     cursor: pointer;
+    transition: ease .25s;
 }
 .btn-google:hover {
-    border: 1px solid rgba(0, 0, 0, .25);
+    border: 1px solid #999999;
+    color: #555555;
     transition: ease .25s;
 }
 
