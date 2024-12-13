@@ -33,26 +33,30 @@ section {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
-.exam-box .title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #323232;
+.exam-box .header {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
     padding: .5rem 0 1rem;
-    border-bottom: 1px solid #323232;
+    border-bottom: 1px solid #999999;
 }
-.exam #question {
-    font-family: 'Noto Sans Thai', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
+.exam-box .title {
+    font: 600 16px 'inter', sans-serif;
+    color: #323232;
+}
+.exam-box .time {
+    font: 400 12px 'inter', sans-serif;
+    text-align: end;
+}
+.exam .head {
+    display: flex;
+    font: 500 12px/1.5 'Noto Sans Thai', sans-serif;
     margin: 1rem 0;
-    line-height: 24px;
     color: #323232;
 }
 .btn {
-    font-family: 'inter', sans-serif;
-    font-weight: 300;
-    font-size: 12px;
+    font: 300 12px/2 'inter', sans-serif;
     background: #ffffff;
     border: 0;
     color: #323232;
@@ -63,6 +67,7 @@ section {
     padding: .5rem .75rem;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+    transition: ease .25s;
 }
 .btn:hover:not([disabled]) {
     background: #5086e0;
@@ -100,6 +105,7 @@ th {
 }
 
 .gif {
+    min-width: 240px;
     max-width: 300px;
     border-radius: 6px;
     display: none;
@@ -135,22 +141,6 @@ th {
 }
 
 /* footer */
-.design {
-    text-align: center;
-    margin: auto;
-    bottom: 0;
-    padding: 5.2rem 0 2.5rem;
-    position: static;
-    animation: design-load var(--design-load-time) ease;
-}
-.five {
-    animation: about-load var(--about-load-time) ease;
-}
-.design p {
-    font: 350 14px/1.5 roboto, sans-serif;
-    color: #777777;
-    transition: ease .25s;
-}
 footer {
     border-top: .5px solid #cecece;
     background: rgba(255, 255, 255, .85);

@@ -1,7 +1,6 @@
 const questions = [
     {
-        question: `Q: Do you usually talk on the phone? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: Do you usually talk on the phone<br>R: ________.`,
         answers: [
             {text: "I called my mum this morning", correct: false},
             {text: "I don't often talk to friends", correct: false},
@@ -10,8 +9,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: Why are you wearing a bandage? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: Why are you wearing a bandage<br>R: ________.`,
         answers: [
             {text: "I have a bad stomach", correct: false},
             {text: "I think it's too expensive", correct: false},
@@ -20,8 +18,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: Do you have these trainers in a 10? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: Do you have these trainers in a 10<br>R: ________.`,
         answers: [
             {text: "It'll take more than 10 minutes", correct: false},
             {text: "They all have left the gym", correct: false},
@@ -30,8 +27,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: How about going to cinema?  <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: How about going to cinema?<br>R: ________.`,
         answers: [
             {text: "Are there any good films showing?", correct: true},
             {text: "How long will the movie last?", correct: false},
@@ -40,8 +36,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: Why did you change your hair style? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: Why did you change your hair style<br>R: ________.`,
         answers: [
             {text: "I want to look at the model", correct: false},
             {text: "It's more expensive to wear", correct: false},
@@ -50,8 +45,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: What's your favorite tourist attraction? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: What's your favorite tourist attraction<br>R: ________.`,
         answers: [
             {text: "I often go sightseeing and take pictures", correct: false},
             {text: "That would be the Eiffel Tower in Paris", correct: true},
@@ -60,8 +54,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: How often you clean your room? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: How often you clean your room<br>R: ________.`,
         answers: [
             {text: "Every weekend", correct: true},
             {text: "In the evening", correct: false},
@@ -70,8 +63,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: What does your father do? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: What does your father do<br>R: ________.`,
         answers: [
             {text: "He does a good job", correct: false},
             {text: "He's in an office", correct: false},
@@ -80,8 +72,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: How long does it take to travel from Chiang Mai to Bangkok? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: How long does it take to travel from Chiang Mai to Bangkok<br>R: ________.`,
         answers: [
             {text: "I recommended the overnight bus", correct: false},
             {text: "About an hour by plane", correct: true},
@@ -90,8 +81,7 @@ const questions = [
         ]
     },
     {
-        question: `Q: What's the matter with your friend? <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: ________.`,
+        question: `Q: What's the matter with your friend<br>R: ________.`,
         answers: [
             {text: "He is a friendly  person", correct: false},
             {text: "He likes science", correct: false},
@@ -165,117 +155,167 @@ const questions = [
     },
 ];
 
+/* ------------------------------------------------ */
+
+let countdownMinutes = 60;
+let countdownTime = countdownMinutes * 60;
+
+const timeElement = document.getElementById("time");
+const questionNoElement = document.getElementById("questionNo");
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("ans-btn");
 const nextButton = document.getElementById("next-btn");
+const gifPlayer = document.getElementById("gifPlayer");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let countdownInterval;
 
-function startQuiz(){
+// Countdown Timer
+function updateCountdown() {
+    const minutes = Math.floor(countdownTime / 60);
+    const seconds = countdownTime % 60;
+
+    timeElement.textContent = `${minutes} min ${seconds}s`;
+
+    if (countdownTime > 0) {
+        countdownTime--;
+    } else {
+        clearInterval(countdownInterval);
+        timeElement.textContent = "Time's up!";
+        showScore();
+    }
+}
+
+// Start Quiz
+function startQuiz() {
+    alert("Close this to start the timer");
     currentQuestionIndex = 0;
     score = 0;
+    countdownTime = countdownMinutes * 60;
+    countdownInterval = setInterval(updateCountdown, 1000);
     nextButton.innerHTML = "Next";
     showQuestion();
 }
-function showQuestion(){
-    resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
+// Show Question Number
+function showQuestionNumber() {
+    const questionNo = currentQuestionIndex + 1;
+    questionNoElement.innerHTML = questionNo + ".&nbsp;";
+}
+
+// Show Question
+function showQuestion() {
+    resetState();
+    showQuestionNumber();
+    let currentQuestion = questions[currentQuestionIndex];
+    questionElement.innerHTML = currentQuestion.question;
+
+    currentQuestion.answers.forEach((answer) => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-        if(answer.correct){
+        if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
         button.addEventListener("click", selectAnswer);
     });
 }
 
-function resetState(){
-    nextButton.style.display = "none";
-    gifPlayer.style.display = 'none'
-    while (answerButtons.firstChild){
-        answerButtons.removeChild(answerButtons.firstChild);
-    }
-}
-
-function selectAnswer(e){
+// Select Answer
+function selectAnswer(e) {
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
-    if(isCorrect){
+    if (isCorrect) {
         selectedBtn.classList.add("correct");
         score++;
-    }
-    else{
+    } else {
         selectedBtn.classList.add("incorrect");
     }
-    Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
+    Array.from(answerButtons.children).forEach((button) => {
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
         }
         button.disabled = true;
     });
     nextButton.style.display = "block";
-    gifPlayer.style.display = 'none'
+    gifPlayer.style.display = "none";
 }
 
-function showScore(){
+// Reset State
+function resetState() {
+    nextButton.style.display = "none";
+    gifPlayer.style.display = "none";
+    while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+// Show Score
+function showScore() {
+    clearInterval(countdownInterval);
     resetState();
-    questionElement.innerHTML = `you scored ${score} out of ${questions.length}!`;
+    
+    timeElement.textContent = "";
+    questionNoElement.textContent = "";
+
+    const totalTimeUsed = countdownMinutes * 60 - countdownTime;
+    const minutesUsed = Math.floor(totalTimeUsed / 60);
+    const secondsUsed = totalTimeUsed % 60;
+
     const scorePercentage = (score / questions.length) * 100;
-    playGif();
-    if(scorePercentage >= 80) {
-        nextButton.innerHTML = 'Home'
-        nextButton.addEventListener('click', function () {
-            window.location.href = '/tgat1';
-        });
+    questionElement.innerHTML = `Score ${score} / ${questions.length}<br>Duration ${minutesUsed} min ${secondsUsed}s`;
+
+    playGif(scorePercentage);
+
+    if (scorePercentage >= 80) {
+        nextButton.textContent = "Home";
+        nextButton.onclick = () => {
+            window.location.href = "/tgat1";
+        };
+    } else {
+        nextButton.textContent = "Try Again";
+        nextButton.onclick = () => {
+            window.location.href = "/tgat1-exam";
+        };
     }
-    else {
-        nextButton.innerHTML = 'Try Again'
-        nextButton.addEventListener('click', function () {
-            window.location.href = '/tgat1-exam';
-        });
-    }
-    nextButton.style.display = 'block'
+    nextButton.style.display = "block";
 }
 
-function playGif() {
-    const gifPlayer = document.getElementById("gifPlayer");    
-    const scorePercentage = (score / questions.length) * 100;
-    if(scorePercentage >= 80) {
-        gifPlayer.src = 'https://media0.giphy.com/media/NYVkNkrc7x99hLQNwF/giphy.gif?cid=6c09b952r0jbi4s0r1fqa77nbuo36xhp0g4gtgoa0kwsnxu8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g';
+// Play GIF Based on Score
+function playGif(scorePercentage) {
+    if (scorePercentage >= 80) {
+        gifPlayer.src =
+            "https://media0.giphy.com/media/NYVkNkrc7x99hLQNwF/giphy.gif?cid=6c09b952r0jbi4s0r1fqa77nbuo36xhp0g4gtgoa0kwsnxu8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g";
+    } else if (scorePercentage >= 20 && scorePercentage < 80) {
+        gifPlayer.src =
+            "https://media2.giphy.com/media/J27KfEl2ayxCQNbyT9/200w.gif?cid=82a1493buxwda61zikzncbnpkxey1aebtg5zyzcbjbhozoy2&ep=v1_gifs_related&rid=200w.gif&ct=g";
+    } else if (scorePercentage < 20) {
+        gifPlayer.src =
+            "https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g";
     }
-    else if(scorePercentage >= 20 && scorePercentage < 80) {
-        gifPlayer.src = 'https://media2.giphy.com/media/J27KfEl2ayxCQNbyT9/200w.gif?cid=82a1493buxwda61zikzncbnpkxey1aebtg5zyzcbjbhozoy2&ep=v1_gifs_related&rid=200w.gif&ct=g';
-    }
-    else if(scorePercentage < 20) {
-        gifPlayer.src = 'https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g';
-    }
-    gifPlayer.style.display = 'block';
+    gifPlayer.style.display = "block";
 }
 
-function handleNextButton(){
+// Handle Next Button
+function handleNextButton() {
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length){
+    if (currentQuestionIndex < questions.length) {
         showQuestion();
-    }
-    else{
+    } else {
         showScore();
     }
 }
 
+// Next Button Logic
 nextButton.addEventListener("click", () => {
-        if(currentQuestionIndex < questions.length){
-            handleNextButton();
-        }
-        else{
-            startQuiz();
-        }
+    if (currentQuestionIndex < questions.length) {
+        handleNextButton();
+    } else {
+        startQuiz();
+    }
 });
 
+// Initialize Quiz
 startQuiz();
