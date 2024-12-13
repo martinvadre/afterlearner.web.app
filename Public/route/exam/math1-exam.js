@@ -357,6 +357,7 @@ const gifPlayer = document.getElementById("gifPlayer");
 let currentQuestionIndex = 0;
 let score = 0;
 let countdownInterval;
+let hasQuizStarted = false;
 
 // Countdown Timer
 function updateCountdown() {
@@ -367,7 +368,8 @@ function updateCountdown() {
 
     if (countdownTime > 0) {
         countdownTime--;
-    } else {
+    } 
+    else {
         clearInterval(countdownInterval);
         timeElement.textContent = "Time's up!";
         showScore();
@@ -376,7 +378,10 @@ function updateCountdown() {
 
 // Start Quiz
 function startQuiz() {
-    alert("Close this to start the timer");
+    if (!hasQuizStarted) {
+        alert("Close this to start the timer");
+        hasQuizStarted = true;
+    }
     currentQuestionIndex = 0;
     score = 0;
     countdownTime = countdownMinutes * 60;
@@ -388,7 +393,7 @@ function startQuiz() {
 // Show Question Number
 function showQuestionNumber() {
     const questionNo = currentQuestionIndex + 1;
-    questionNoElement.textContent = questionNo + ". ";
+    questionNoElement.innerHTML = questionNo + ".&nbsp;";
 }
 
 // Show Question
@@ -417,7 +422,8 @@ function selectAnswer(e) {
     if (isCorrect) {
         selectedBtn.classList.add("correct");
         score++;
-    } else {
+    } 
+    else {
         selectedBtn.classList.add("incorrect");
     }
     Array.from(answerButtons.children).forEach((button) => {
@@ -456,15 +462,16 @@ function showScore() {
 
     playGif(scorePercentage);
 
-    if (scorePercentage >= 80) {
+    if (scorePercentage >= 20) {
         nextButton.textContent = "Home";
         nextButton.onclick = () => {
-            window.location.href = "/math1";
+            window.location.href = "/tgat1";
         };
-    } else {
+    } 
+    else {
         nextButton.textContent = "Try Again";
         nextButton.onclick = () => {
-            window.location.href = "/math1-exam";
+            window.location.href = "/tgat1-exam";
         };
     }
     nextButton.style.display = "block";
@@ -473,14 +480,13 @@ function showScore() {
 // Play GIF Based on Score
 function playGif(scorePercentage) {
     if (scorePercentage >= 80) {
-        gifPlayer.src =
-            "https://media0.giphy.com/media/NYVkNkrc7x99hLQNwF/giphy.gif?cid=6c09b952r0jbi4s0r1fqa77nbuo36xhp0g4gtgoa0kwsnxu8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g";
-    } else if (scorePercentage >= 20 && scorePercentage < 80) {
-        gifPlayer.src =
-            "https://media2.giphy.com/media/J27KfEl2ayxCQNbyT9/200w.gif?cid=82a1493buxwda61zikzncbnpkxey1aebtg5zyzcbjbhozoy2&ep=v1_gifs_related&rid=200w.gif&ct=g";
-    } else if (scorePercentage < 20) {
-        gifPlayer.src =
-            "https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g";
+        gifPlayer.src = "https://media0.giphy.com/media/NYVkNkrc7x99hLQNwF/giphy.gif?cid=6c09b952r0jbi4s0r1fqa77nbuo36xhp0g4gtgoa0kwsnxu8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g";
+    } 
+    else if (scorePercentage >= 20 && scorePercentage < 80) {
+        gifPlayer.src = "https://media2.giphy.com/media/J27KfEl2ayxCQNbyT9/200w.gif?cid=82a1493buxwda61zikzncbnpkxey1aebtg5zyzcbjbhozoy2&ep=v1_gifs_related&rid=200w.gif&ct=g";
+    } 
+    else if (scorePercentage < 20) {
+        gifPlayer.src = "https://media4.giphy.com/media/Vuw9m5wXviFIQ/200w.gif?cid=6c09b9523ukw482vexlepx57prpujk0l7nd3g6x5fuydj793&ep=v1_gifs_search&rid=200w.gif&ct=g";
     }
     gifPlayer.style.display = "block";
 }
@@ -490,7 +496,8 @@ function handleNextButton() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
-    } else {
+    } 
+    else {
         showScore();
     }
 }
@@ -499,7 +506,8 @@ function handleNextButton() {
 nextButton.addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         handleNextButton();
-    } else {
+    } 
+    else {
         startQuiz();
     }
 });
