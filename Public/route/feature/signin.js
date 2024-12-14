@@ -28,21 +28,6 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-// Email/password sign-in
-document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log("User signed in:", userCredential.user.email);
-    } catch (error) {
-        console.error("Error during email login:", error.message);
-        alert("Login failed: " + error.message);
-    }
-});
-
 // Google sign-in
 document.getElementById("googleSignInButton").addEventListener("click", () => {
     const provider = new GoogleAuthProvider();
@@ -55,4 +40,20 @@ document.getElementById("googleSignInButton").addEventListener("click", () => {
             console.error("Error during Google sign-in:", error.message);
             alert("Google sign-in failed: " + error.message);
         });
+});
+
+// Email/password sign-in
+document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log("User signed in:", userCredential.user.email);
+    } 
+    catch (error) {
+        console.error("Error during email login:", error.message);
+        alert("Login failed: " + error.message);
+    }
 });
