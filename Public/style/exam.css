@@ -35,12 +35,11 @@ section {
     border: .5px solid #cecece;
 }
 .exam-box .header {
-    /* border: 1px solid red; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     padding: .5rem 0 1rem;
-    border-bottom: 1px solid #cecece;
+    border-bottom: .5px solid #cecece;
 }
 .exam-box .title {
     font: 600 16px 'inter', sans-serif;
@@ -136,10 +135,12 @@ th {
 
 .correct {
     background: #9aeabc;
+    border: .5px solid #9aeabc;
     transition: ease .25s;
 }
 .incorrect {
     background: #ff9393;
+    border: .5px solid #ff9393;
     transition: ease .25s;
 }
 

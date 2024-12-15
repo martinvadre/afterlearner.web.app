@@ -36,21 +36,21 @@ function managePageAccess() {
         const usernameElement = document.getElementById('username');
 
         if (user) {
-            if (usernameElement) {
-                // Use displayName if available, otherwise fallback to email username
-                const username = user.displayName || user.email?.split('@')[0];
-                usernameElement.textContent = username;
-                console.log("User signed in:", username);
-            }
-
             if (currentPage === "/") {
                 window.location.replace("/home");
             }
-        } else {
+            // if (usernameElement) {
+            //     const username = user.displayName || user.email?.split('@')[0];
+            //     usernameElement.textContent = username;
+            //     console.log("User signed in:", username);
+            //     window.location.replace("/home");
+            // }
+        } 
+        else {
             if (restrictedPages.includes(currentPage)) {
                 window.location.replace("/");
             }
-            console.log("No user signed in");
+            // console.log("No user signed in");
         }
 
         if (!user && !fbaseKey) {

@@ -465,7 +465,7 @@ function showScore() {
     if (scorePercentage >= 20) {
         nextButton.textContent = "Home";
         nextButton.onclick = () => {
-            window.location.href = "/tgat1";
+            window.location.href = "/home";
         };
     } 
     else {

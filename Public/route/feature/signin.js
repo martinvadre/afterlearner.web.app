@@ -19,11 +19,10 @@ const auth = getAuth(app);
 // Auth state change listener
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is signed in
         console.log("User signed in:", user.displayName || user.email);
         window.location.replace("/home");
-    } else {
-        // No user is signed in
+    } 
+    else {
         console.log("No user signed in");
     }
 });
