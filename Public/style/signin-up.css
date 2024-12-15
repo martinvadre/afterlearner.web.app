@@ -28,7 +28,7 @@ body {
     background-color: #ffffff;
     width: 100%;
     max-width: 480px;
-    padding: 1.2rem;    
+    padding: 1.2rem;
     animation: box-load var(--box-load-time) ease;
 }
 h2 {
@@ -113,6 +113,51 @@ input[type="password"] {
 }
 .signin-link a:hover {
     text-decoration: underline;
+}
+
+/* footer */
+footer {
+    border-top: .5px solid #cecece;
+    background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(24px);
+    text-align: left;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1000;
+    animation: zero-load var(--zero-load-time) ease;
+    transition: ease .25s;
+}
+.fixed-footer {
+    max-width: 1200px;
+    padding: .125rem 1.2rem;
+    padding-bottom: calc(.125rem + 0px);
+    margin: auto;
+}
+.fixed-footer a,
+.fixed-footer p {
+    font: 350 14px inter, sans-serif;
+    color: #323232;
+    transition: ease .25s;
+}
+.fixed-footer a:hover {
+    color: #0179ff;
+    transition: ease .25s;
+}
+.fixed-footer .current {
+    color: #777777;
+    transition: ease .25s;
+}
+.fixed-footer .current:hover {
+    color: #777777;
+    transition: ease .25s;
+}
+.lower {
+    font-size: 12px;
+}
+.early {
+    color: transparent;
 }
 
 /* ------------------------------------------------ */

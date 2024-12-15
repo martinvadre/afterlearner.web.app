@@ -276,7 +276,7 @@ nav {
 }
 .card-container p {
     font-family: 'inter', sans-serif;
-    color: #323232;
+    color: #777777;
     max-width: 790px;
     font-weight: 400;
     font-size: 16px;
@@ -446,9 +446,6 @@ nav {
     padding: 5.2rem 0 1rem;
     position: static;
     animation: design-load var(--design-load-time) ease;
-}
-.five {
-    animation: about-load var(--about-load-time) ease;
 }
 .design p {
     font: 350 14px/1.5 roboto, sans-serif;

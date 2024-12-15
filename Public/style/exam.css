@@ -25,13 +25,14 @@ section {
     align-items: center;
 }
 .exam-box {
-    background: #f8f8fa;
+    background: #ffffff;
     max-width: 480px;
     margin: 4rem auto auto;
     padding: 1.2rem;
     position: relative;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); */
+    border: .5px solid #cecece;
 }
 .exam-box .header {
     /* border: 1px solid red; */
@@ -39,7 +40,7 @@ section {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     padding: .5rem 0 1rem;
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid #cecece;
 }
 .exam-box .title {
     font: 600 16px 'inter', sans-serif;
@@ -66,13 +67,15 @@ section {
     margin: .25rem 0;
     padding: .5rem .75rem;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16); */
+    border: .5px solid #cecece;
     transition: ease .25s;
 }
 .btn:hover:not([disabled]) {
     background: #5086e0;
     color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    border: .5px solid #5086e0;
     transition: ease .25s;
 }
 .btn:disabled {
