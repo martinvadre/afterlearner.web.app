@@ -39,18 +39,15 @@ function managePageAccess() {
             if (currentPage === "/") {
                 window.location.replace("/home");
             }
-            // if (usernameElement) {
-            //     const username = user.displayName || user.email?.split('@')[0];
-            //     usernameElement.textContent = username;
-            //     console.log("User signed in:", username);
-            //     window.location.replace("/home");
-            // }
+            if (usernameElement) {
+                const username = user.displayName || user.email?.split('@')[0];
+                usernameElement.textContent = username;
+            }
         } 
         else {
             if (restrictedPages.includes(currentPage)) {
                 window.location.replace("/");
             }
-            // console.log("No user signed in");
         }
 
         if (!user && !fbaseKey) {

@@ -34,6 +34,8 @@ document.getElementById("googleSignInButton").addEventListener("click", () => {
         .then((result) => {
             const user = result.user;
             console.log("Google user signed in:", user.email);
+
+            window.location.replace("/home");
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);
@@ -44,12 +46,15 @@ document.getElementById("googleSignInButton").addEventListener("click", () => {
 // Email/password sign-in
 document.getElementById("signInForm")?.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log("User signed in:", userCredential.user.email);
+
+        window.location.replace("/home");
     } 
     catch (error) {
         console.error("Error during email login:", error.message);

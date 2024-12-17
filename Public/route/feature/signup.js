@@ -23,6 +23,8 @@ document.getElementById("googleSignInButton").addEventListener("click", () => {
         .then((result) => {
             const user = result.user;
             console.log("Google user signed in:", user.email);
+
+            window.location.replace("/home");
         })
         .catch((error) => {
             console.error("Error during Google sign-in:", error.message);

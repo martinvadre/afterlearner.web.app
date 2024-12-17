@@ -58,6 +58,9 @@ input[type="password"] {
     border-radius: 8px;
     font-size: 14px;
 }
+.login .reset {
+    border: 1px solid green;
+}
 .form p {
     font: 450 12px/1.5 inter, sans-serif;
     color: #777777;
